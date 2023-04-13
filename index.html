@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Light hall Challenge</title>
 </head>
+
 <body>
   <h1>LH Challenge Increment </h1>
-  <p>count is <span id="count">0</span></p>
-  <button class="btn">Click me!!</button>
+  <p>count is <span id="count">1</span></p>
+  <button id="btn">Click me!!</button>
 
   <script>
+    let btn = document.getElementById("btn")
+    let sum = 0;
 
-    let count = document.getElementById("count");
-    let button = document.getElementsByClassName("btn")[0];
+    if (localStorage.getItem("count")) {
+      // Retrieve counter value from local storage
+      sum = parseInt(localStorage.getItem("count"));
+    }
 
-    button.addEventListener("click", ()=> {
-      let num = parseInt(count.innerHTML);
-      num = num + 1;
-      localStorage.setItem("count", num)
-      count.innerHTML = localStorage.getItem("count")
+    document.getElementById("count").innerHTML = sum;
+
+    // add an eventlistner to listen for mouseevent click
+    btn.addEventListener("click", () => {
+      sum++;
+      // Update counter display
+      document.getElementById("count").innerHTML = sum;
+      localStorage.setItem("count", sum.toString());
     })
-    count.innerHTML = localStorage.getItem("count")
+
   </script>
+
+
 </body>
+
 </html>
